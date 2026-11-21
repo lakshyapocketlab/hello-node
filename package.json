@@ -1,0 +1,70 @@
+{
+  "name": "@lakshyapocketlab/hello",
+  "version": "0.1.0",
+  "description": "Official Node.js SDK for Hello, the WhatsApp Business API. Send messages, templates and webhooks.",
+  "keywords": [
+    "whatsapp",
+    "whatsapp-business",
+    "whatsapp-api",
+    "wa-business",
+    "whatsapp-business-api",
+    "whatsapp-cloud-api",
+    "mcp"
+  ],
+  "license": "MIT",
+  "author": "Lakshya Pocket Lab",
+  "homepage": "https://github.com/lakshyapocketlab/hello-node#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lakshyapocketlab/hello-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lakshyapocketlab/hello-node/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run typecheck && npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@vitest/coverage-v8": "^4.1.12",
+    "tsup": "^8.5.1",
+    "typescript": "5.9",
+    "vitest": "^4.1.12"
+  }
+}
