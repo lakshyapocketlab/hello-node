@@ -6,7 +6,7 @@ export type FetchLike = (input: string, init?: RequestInit) => Promise<Response>
 export interface HelloOptions {
   /** API key (`hello_live_...`). Defaults to `process.env.HELLO_API_KEY`. */
   apiKey?: string;
-  /** API origin. Default `https://api.lakshyapocketlab.com`. */
+  /** API origin. Defaults to `process.env.HELLO_BASE_URL`, then `https://helloapi.lakshyapocketlab.com`. */
   baseUrl?: string;
   /** Per-attempt timeout in milliseconds. Default 60000. */
   timeout?: number;
@@ -16,7 +16,7 @@ export interface HelloOptions {
   fetch?: FetchLike;
 }
 
-export const DEFAULT_BASE_URL = "https://api.lakshyapocketlab.com";
+export const DEFAULT_BASE_URL = "https://helloapi.lakshyapocketlab.com";
 export const DEFAULT_TIMEOUT = 60_000;
 export const DEFAULT_MAX_RETRIES = 2;
 
@@ -63,7 +63,7 @@ export class HttpClient {
       throw new HelloError("No global fetch found (Node >=18 is required): pass a `fetch` option.");
     }
     this.apiKey = apiKey;
-    this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/+$/, "");
+    this.baseUrl = (options.baseUrl ?? (env?.HELLO_BASE_URL || DEFAULT_BASE_URL)).replace(/\/+$/, "");
     this.timeout = options.timeout ?? DEFAULT_TIMEOUT;
     this.maxRetries = options.maxRetries ?? DEFAULT_MAX_RETRIES;
     this.fetchImpl = (input, init) => fetchImpl(input, init);

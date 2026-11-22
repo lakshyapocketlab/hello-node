@@ -26,11 +26,17 @@ describe("options", () => {
     const fetchMock = vi.fn(async () => json({ status: "ok", test_mode: false }));
     vi.stubGlobal("fetch", fetchMock);
     const client = new Hello();
-    expect(client.baseUrl).toBe("https://api.lakshyapocketlab.com");
+    expect(client.baseUrl).toBe("https://helloapi.lakshyapocketlab.com");
     await client.ping();
     const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
-    expect(url).toBe("https://api.lakshyapocketlab.com/v1/ping");
+    expect(url).toBe("https://helloapi.lakshyapocketlab.com/v1/ping");
     expect((init.headers as Record<string, string>).Authorization).toBe("Bearer env_key");
+  });
+
+  it("reads the base URL from HELLO_BASE_URL, with the baseUrl option taking precedence", () => {
+    vi.stubEnv("HELLO_BASE_URL", "https://staging.example.com/");
+    expect(new Hello({ apiKey: "k", fetch: vi.fn() }).baseUrl).toBe("https://staging.example.com");
+    expect(new Hello({ apiKey: "k", baseUrl: "https://x.test", fetch: vi.fn() }).baseUrl).toBe("https://x.test");
   });
 
   it("throws when no fetch exists", () => {
@@ -55,7 +61,7 @@ describe("ping", () => {
     expect(calls[0]).toMatchObject({ method: "GET", url: "https://api.test/v1/ping" });
     expect(calls[0]?.headers).toMatchObject({
       Authorization: "Bearer hello_live_test",
-      "User-Agent": "hello-node/0.1.0",
+      "User-Agent": "hello-node/0.1.1",
       Accept: "application/json",
     });
     expect(calls[0]?.headers["Content-Type"]).toBeUndefined();

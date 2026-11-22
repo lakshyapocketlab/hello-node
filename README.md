@@ -2,6 +2,13 @@
 
 Official Node.js SDK for Hello, the WhatsApp Business API. Send messages, templates and webhooks.
 
+[![npm version](https://img.shields.io/npm/v/@lakshyapocketlab/hello)](https://www.npmjs.com/package/@lakshyapocketlab/hello)
+[![npm downloads](https://img.shields.io/npm/dm/@lakshyapocketlab/hello)](https://www.npmjs.com/package/@lakshyapocketlab/hello)
+[![CI](https://github.com/lakshyapocketlab/hello-node/actions/workflows/ci.yml/badge.svg)](https://github.com/lakshyapocketlab/hello-node/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![node](https://img.shields.io/node/v/@lakshyapocketlab/hello)](https://nodejs.org)
+[![TypeScript types included](https://img.shields.io/badge/types-TypeScript-blue.svg)](https://www.typescriptlang.org)
+
 - Zero runtime dependencies (uses the global `fetch`, `FormData` and `Blob`)
 - Node.js 18 or newer, ESM and CommonJS, full TypeScript types
 - Typed errors, automatic retries, idempotent sends
@@ -17,7 +24,8 @@ npm i @lakshyapocketlab/hello
 ```ts
 import { Hello } from "@lakshyapocketlab/hello";
 
-const hello = new Hello({ apiKey: process.env.HELLO_API_KEY });
+// Pass your API key (hello_live_...) directly; if omitted, HELLO_API_KEY is read from the environment.
+const hello = new Hello({ apiKey: "hello_live_..." });
 
 const { data: numbers } = await hello.phoneNumbers.list();
 const from = numbers[0]!.phone_number_id;
@@ -38,7 +46,7 @@ CommonJS: `const { Hello } = require("@lakshyapocketlab/hello");`
 ```ts
 new Hello({
   apiKey: "hello_live_...",                  // default: process.env.HELLO_API_KEY (throws if missing)
-  baseUrl: "https://api.lakshyapocketlab.com", // default
+  baseUrl: "https://helloapi.lakshyapocketlab.com", // default; env HELLO_BASE_URL overrides it, this option wins
   timeout: 60_000,                           // ms per attempt
   maxRetries: 2,                             // retries after the first attempt
   fetch: customFetch,                        // default: global fetch

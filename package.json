@@ -1,6 +1,6 @@
 {
   "name": "@lakshyapocketlab/hello",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official Node.js SDK for Hello, the WhatsApp Business API. Send messages, templates and webhooks.",
   "keywords": [
     "whatsapp",
