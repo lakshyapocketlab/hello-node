@@ -62,7 +62,7 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "^20.19.43",
+    "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^4.1.12",
     "tsup": "^8.5.1",
     "typescript": "5.9",
