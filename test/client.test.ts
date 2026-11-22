@@ -48,6 +48,7 @@ describe("options", () => {
     vi.stubEnv("HELLO_API_KEY", "env_key");
     const { client, calls } = setup([json({})], { apiKey: "explicit", baseUrl: "https://x.test///" });
     expect(client.baseUrl).toBe("https://x.test");
+    expect(new Hello({ apiKey: "k", baseUrl: "///", fetch: vi.fn() }).baseUrl).toBe("");
     await client.ping();
     expect(calls[0]?.url).toBe("https://x.test/v1/ping");
     expect(calls[0]?.headers.Authorization).toBe("Bearer explicit");

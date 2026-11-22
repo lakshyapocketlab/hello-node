@@ -62,10 +62,13 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "^20.19.43",
-    "@vitest/coverage-v8": "^4.1.12",
+    "@types/node": "^22.19.0",
+    "@vitest/coverage-v8": "^5.1.1",
     "tsup": "^8.5.1",
     "typescript": "5.9",
-    "vitest": "^4.1.12"
+    "vitest": "^5.1.1"
+  },
+  "overrides": {
+    "esbuild": "^0.28.2"
   }
 }

@@ -63,7 +63,7 @@ export class HttpClient {
       throw new HelloError("No global fetch found (Node >=18 is required): pass a `fetch` option.");
     }
     this.apiKey = apiKey;
-    this.baseUrl = (options.baseUrl ?? (env?.HELLO_BASE_URL || DEFAULT_BASE_URL)).replace(/\/+$/, "");
+    this.baseUrl = trimTrailingSlashes(options.baseUrl ?? (env?.HELLO_BASE_URL || DEFAULT_BASE_URL));
     this.timeout = options.timeout ?? DEFAULT_TIMEOUT;
     this.maxRetries = options.maxRetries ?? DEFAULT_MAX_RETRIES;
     this.fetchImpl = (input, init) => fetchImpl(input, init);
@@ -168,4 +168,11 @@ const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve,
 
 function errMessage(err: unknown): string {
   return err instanceof Error ? err.message : String(err);
+}
+
+/** Removes trailing "/" characters with a linear scan (a `/\/+$/` regex can backtrack on long inputs). */
+function trimTrailingSlashes(url: string): string {
+  let end = url.length;
+  while (end > 0 && url.charCodeAt(end - 1) === 47) end--;
+  return url.slice(0, end);
 }

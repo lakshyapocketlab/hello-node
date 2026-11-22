@@ -7,9 +7,24 @@ updates:
     open-pull-requests-limit: 5
     commit-message:
       prefix: "chore(deps)"
+    # Peer-dependent packages must move together, or each PR fails npm ci on its own.
     groups:
+      vitest:
+        patterns: ["vitest", "@vitest/*"]
+      build:
+        patterns: ["tsup", "esbuild"]
       minor-and-patch:
         update-types: ["minor", "patch"]
+    ignore:
+      # tsup 9 drops Node 18 (ERR_REQUIRE_ESM at install) and TypeScript 7 breaks tsup's
+      # .d.ts build (rollup-plugin-dts). Revisit when engines moves past Node 18 / tsup supports TS 7.
+      - dependency-name: "tsup"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # Types stay on 22 (the floor vitest 5 accepts) rather than the newest Node release.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
