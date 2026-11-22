@@ -5,6 +5,7 @@ Official Node.js SDK for Hello, the WhatsApp Business API. Send messages, templa
 [![npm version](https://img.shields.io/npm/v/@lakshyapocketlab/hello)](https://www.npmjs.com/package/@lakshyapocketlab/hello)
 [![npm downloads](https://img.shields.io/npm/dm/@lakshyapocketlab/hello)](https://www.npmjs.com/package/@lakshyapocketlab/hello)
 [![CI](https://github.com/lakshyapocketlab/hello-node/actions/workflows/ci.yml/badge.svg)](https://github.com/lakshyapocketlab/hello-node/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/lakshyapocketlab/hello-node/badge)](https://scorecard.dev/viewer/?uri=github.com/lakshyapocketlab/hello-node)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![node](https://img.shields.io/node/v/@lakshyapocketlab/hello)](https://nodejs.org)
 [![TypeScript types included](https://img.shields.io/badge/types-TypeScript-blue.svg)](https://www.typescriptlang.org)
