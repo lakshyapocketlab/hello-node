@@ -248,7 +248,15 @@ Runnable programs live in [`examples/`](examples). Run them with [tsx](https://t
 | [`error-handling.ts`](examples/error-handling.ts) | Branch on `AuthenticationError`, `RateLimitError`, `NotFoundError` and `APIError` | `<phone_number_id> <to> "Hello"` |
 | [`list-templates.ts`](examples/list-templates.ts) | List approved templates across all pages | `<waba_id>` |
 
-More examples: [hello-examples](https://github.com/lakshyapocketlab/hello-examples).
+### More examples
+
+The [hello-examples](https://github.com/lakshyapocketlab/hello-examples) repository has more runnable programs:
+
+- [`message-types/node`](https://github.com/lakshyapocketlab/hello-examples/tree/main/message-types/node): one example per message type (media, location, interactive, templates, ...) with delivery tracking
+- [`smoke-test/node`](https://github.com/lakshyapocketlab/hello-examples/tree/main/smoke-test/node): a live smoke test of this SDK against the real API
+- [`webhooks`](https://github.com/lakshyapocketlab/hello-examples/tree/main/webhooks): receive and verify webhooks
+- [`n8n`](https://github.com/lakshyapocketlab/hello-examples/tree/main/n8n): send messages from n8n workflows
+- [`ai-agents`](https://github.com/lakshyapocketlab/hello-examples/tree/main/ai-agents): connect AI agents over MCP
 
 ## API reference
 
