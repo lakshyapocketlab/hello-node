@@ -61,7 +61,7 @@ describe("ping", () => {
     expect(calls[0]).toMatchObject({ method: "GET", url: "https://api.test/v1/ping" });
     expect(calls[0]?.headers).toMatchObject({
       Authorization: "Bearer hello_live_test",
-      "User-Agent": "hello-node/0.1.1",
+      "User-Agent": "hello-node/1.0.0",
       Accept: "application/json",
     });
     expect(calls[0]?.headers["Content-Type"]).toBeUndefined();
