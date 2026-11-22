@@ -12,6 +12,7 @@ jobs:
   lint-typecheck-test-coverage:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node: [18, 20, 22]
     steps:
@@ -25,5 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test -- --coverage
+      # vitest 4 needs Node >= 20; Node 18 still gets install, typecheck, build and the smoke test.
+      - if: matrix.node != 18
+        run: npm test -- --coverage
       - run: npm run build
