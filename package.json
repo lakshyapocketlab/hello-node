@@ -58,7 +58,8 @@
     "lint": "tsc --noEmit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "npm run typecheck && npm run build && npm test"
+    "prepublishOnly": "npm run typecheck && npm run build && npm test",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^20.19.43",
